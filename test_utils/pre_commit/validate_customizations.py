@@ -69,12 +69,15 @@ def validate_module(customized_doctypes):
 	exceptions = []
 	app_dir = pathlib.Path().resolve()
 	this_app = app_dir.stem
+	print("IN VALIDATE_MODULE")
+	print(f"THIS APP: {this_app}")
 	if not pathlib.Path.exists(app_dir / this_app / "modules.txt"):
 		modules = []
 	else:
 		modules = (app_dir / this_app / "modules.txt").read_text().split("\n")
 	for doctype, customize_files in customized_doctypes.items():
 		for customize_file in customize_files:
+			print("CUSTOMIZE_FILE:", customize_file)
 			if not this_app in str(customize_file):
 				continue
 			file_contents = json.loads(customize_file.read_text())
